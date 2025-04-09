@@ -12,10 +12,16 @@ const Header = ({ cartItems }) => {
 
   return (
     <header className={styles.headerContainer}>
-      <h1>🛒 My Store</h1>
-      <button onClick={handleCartClick} className={styles.cartButton}>
-        Items in Cart: {cartCount}
-      </button>
+      <div className={styles.headLeft}>
+        <h1>🛒 My Store</h1>
+      </div>
+      <div className={styles.headRight}>
+        <button>Home</button>
+        <button onClick={handleCartClick} className={styles.cartButton}>
+          Items in Cart: {cartCount}
+        </button>
+        <button>Logout</button>
+      </div>
     </header>
   );
 };
