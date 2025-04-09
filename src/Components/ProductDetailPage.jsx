@@ -15,7 +15,10 @@ const ProductDetailPage = ({ cartItems, setCartItems }) => {
         throw new Error("Network response was not ok");
       }
       const data = await response.json();
-      setProduct(data);
+      
+
+      const dataWithQuantity = { ...data, quantity: 1 };
+      setProduct(dataWithQuantity);
     } catch (err) {
       console.log("Fetch error:", err);
     }

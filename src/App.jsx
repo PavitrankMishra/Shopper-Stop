@@ -20,7 +20,12 @@ function App() {
             />
           }
         />
-        <Route path="/cart" element={<CartPage cartItems={cartItems} />} />
+        <Route
+          path="/cart"
+          element={
+            <CartPage cartItems={cartItems} setCartItems={setCartItems} />
+          }
+        />
       </Routes>
     </Router>
   );

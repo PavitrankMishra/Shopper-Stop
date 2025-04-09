@@ -4,35 +4,27 @@ import { Link } from "react-router-dom";
 
 const CartPage = ({ cartItems, setCartItems }) => {
   const [showPopup, setShowPopup] = useState(false);
-  const [count, setCount] = useState(1);
-
-  const incrementCount = () => {
-    setCount(count + 1);
-  };
-
-  const decrementCount = () => {
-    setCount(count - 1);
-  };
-
-  //   const handleQuantityChange = (id) => {
-  //     const updatedCart = cartItems.map((item) =>
-  //       item.id === id
-  //         ? { ...item, quantity: Math.max(1, item.quantity || 1) }
-  //         : item
-  //     );
-  //     setCartItems(updatedCart);
-  //   };
-
-  //   const handleRemoveItem = (id) => {
-  //     const updatedCart = cartItems.filter((item) => item.id !== id);
-  //     setCartItems(updatedCart);
-  //   };
-
   const getTotalPrice = () => {
     return cartItems.reduce(
       (acc, item) => acc + item.price * (item.quantity || 1),
       0
     );
+  };
+
+  const incrementQuantity = (id) => {
+    const updatedCart = cartItems.map((item) =>
+      item.id === id ? { ...item, quantity: (item.quantity || 1) + 1 } : item
+    );
+    setCartItems(updatedCart);
+  };
+
+  const decrementQuantity = (id) => {
+    const updatedCart = cartItems.map((item) =>
+      item.id === id && item.quantity > 1
+        ? { ...item, quantity: item.quantity - 1 }
+        : item
+    );
+    setCartItems(updatedCart);
   };
 
   const handleCheckout = () => {
@@ -60,17 +52,15 @@ const CartPage = ({ cartItems, setCartItems }) => {
                   <h4>{item.title}</h4>
                   <p>Price: ${item.price}</p>
                   <div className={styles.controls}>
-                    <button onClick={decrementCount}>-</button>
-                    <span>{count > 0 ? count : 0}</span>
-
-                    <button onClick={incrementCount}>+</button>
-
-                    {/* <button
-                      onClick={() => handleRemoveItem(item.id)}
-                      className={styles.removeBtn}
-                    >
-                      Remove
-                    </button> */}
+                    <div className={styles.controls}>
+                      <button onClick={() => decrementQuantity(item.id)}>
+                        -
+                      </button>
+                      <span style={{ color: "black" }}>{item.quantity}</span>
+                      <button onClick={() => incrementQuantity(item.id)}>
+                        +
+                      </button>
+                    </div>
                   </div>
                 </div>
               </li>
@@ -86,7 +76,9 @@ const CartPage = ({ cartItems, setCartItems }) => {
         </>
       )}
 
-      <Link to="/">← Back to Products</Link>
+      <Link to="/" className={styles.backLink}>
+        ← Back to Products
+      </Link>
 
       {showPopup && (
         <div className={styles.popup}>🎉 Order placed successfully!</div>
