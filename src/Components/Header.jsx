@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "../Components/Header.module.css";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Header = ({ cartItems }) => {
   const cartCount = cartItems.length;
@@ -16,7 +17,7 @@ const Header = ({ cartItems }) => {
         <h1>🛒 My Store</h1>
       </div>
       <div className={styles.headRight}>
-        <button>Home</button>
+        <button onClick={() => navigate("/")}>Home</button>
         <button onClick={handleCartClick} className={styles.cartButton}>
           Items in Cart: {cartCount}
         </button>

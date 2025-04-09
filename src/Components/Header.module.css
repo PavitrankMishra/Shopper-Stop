@@ -1,18 +1,19 @@
 .headerContainer {
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: space-between;
   padding: 10px 3px;
   background-color: #fffaf4;
+  /* font-size:5vw; */
 }
 
 .headerContainer button {
   background-color: transparent;
   outline: none;
   border: none;
-  font-size: 18px;
-  border: 2px solid black;
-  /* padding: 10px; */
+  font-size: 16px;
+  /* border: 2px solid black; */
+  padding: 10px;
   border-radius: 8px;
 }
 
