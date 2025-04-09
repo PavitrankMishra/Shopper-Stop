@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react";
 import styles from "./ProductList.module.css";
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const ProductList = () => {
   const [products, setProducts] = useState([]);
   const [inputProduct, setInputProduct] = useState("");
   const [updatedProducts, setUpdatedProducts] = useState([]);
+  const navigate = useNavigate();
 
   const fetchProducts = async () => {
     try {
@@ -53,10 +56,14 @@ const ProductList = () => {
         </thead>
         <tbody>
           {updatedProducts.map((product, index) => (
-            <tr key={product.id}>
+            <tr
+              key={product.id}
+              onClick={() => navigate(`/productdetail/${product.id}`)}
+              style={{ cursor: "pointer" }}
+            >
               <td>{index + 1}</td>
               <td>{product.title}</td>
-              <td>{product.price}</td>
+              <td>${product.price}</td>
             </tr>
           ))}
         </tbody>
