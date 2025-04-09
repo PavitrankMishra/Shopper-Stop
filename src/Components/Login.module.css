@@ -1,0 +1,137 @@
+.userLoginContainer {
+  border: 2px solid #e0e0e0;
+  min-height: 95.5vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  max-width: 100%;
+  background-color: #fbece9;
+  padding: 30px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+}
+
+/* Heading Styling */
+.userLoginContainer .loginHeading {
+  display: inline;
+  width: max-content;
+  text-decoration: underline;
+  text-underline-offset: 10px;
+}
+
+.userLoginContainer h1 {
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 30px;
+}
+
+/* Inputs */
+.loginInput,
+.loginPassword {
+  width: 100%;
+  padding: 12px 16px;
+  margin-bottom: 20px;
+  border: none;
+  border-bottom: 2px solid #aaa;
+  background-color: #fff;
+  border-radius: 6px;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.loginInput:focus,
+.loginPassword:focus {
+  border-bottom: 2px solid #ff5722;
+  outline: none;
+  box-shadow: 0 0 6px rgba(255, 87, 34, 0.4);
+}
+
+/* Button */
+.loginButton {
+  border: none;
+  padding: 12px 24px;
+  background-color: #ff6f61;
+  color: #ffffff;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.loginButton:hover {
+  background-color: #e64a19;
+  transform: scale(1.03);
+}
+
+/* 🔸 Mobile */
+@media (max-width: 480px) {
+  .loginInput,
+  .loginPassword {
+    font-size: 18px;
+    max-width: 300px;
+  }
+
+  .loginButton {
+    font-size: 18px;
+    width: 100%;
+    max-width: 150px;
+  }
+
+  .userLoginContainer {
+    align-items: flex-start;
+  }
+}
+
+/* 🔸 Tablet */
+@media (min-width: 481px) and (max-width: 768px) {
+  .userLoginContainer {
+    padding: 40px;
+  }
+
+  .loginInput,
+  .loginPassword {
+    font-size: 18px;
+    max-width: 400px;
+  }
+
+  .loginButton {
+    font-size: 18px;
+    max-width: 200px;
+  }
+}
+
+/* 🔸 Small Desktop */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .userLoginContainer {
+    padding: 50px;
+  }
+
+  .loginInput,
+  .loginPassword {
+    max-width: 450px;
+  }
+
+  .loginButton {
+    font-size: 18px;
+    max-width: 220px;
+  }
+}
+
+/* 🔸 Large Desktop */
+@media (min-width: 1025px) {
+  .userLoginContainer {
+    padding: 60px;
+  }
+
+  .loginInput,
+  .loginPassword {
+    max-width: 500px;
+  }
+
+  .loginButton {
+    font-size: 18px;
+    max-width: 240px;
+  }
+}

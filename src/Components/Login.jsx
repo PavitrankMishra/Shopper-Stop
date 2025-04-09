@@ -4,8 +4,8 @@ import { useNavigate } from "react-router-dom";
 import styles from "../Components/Login.module.css";
 
 const Login = () => {
-  const [loginID, setLoginID] = useState("");
-  const [loginPassword, setLoginPassword] = useState("");
+  const [loginID, setLoginID] = useState("mor_2314");
+  const [loginPassword, setLoginPassword] = useState("83r5^_");
   const [token, setToken] = useState("");
   const navigate = useNavigate();
 
@@ -40,23 +40,31 @@ const Login = () => {
   };
   return (
     <>
-      <section className={styles.userListContainer}>
-        <h1>Welcome to Login screen</h1>
-        <h2>Email: </h2>
-        <input
-          type="text"
-          placeholder="Enter the email"
-          value={loginID}
-          onChange={(e) => setLoginID(e.target.value)}
-        />
-        <h2>Password: </h2>
-        <input
-          type="password"
-          placeholder="Enter the password"
-          value={loginPassword}
-          onChange={(e) => setLoginPassword(e.target.value)}
-        />
-        <button onClick={handleLogin}>Login Button</button>
+      <section className={styles.userLoginContainer}>
+        <h1 className={styles.loginHeading}>Login</h1>
+        <div className={styles.inputContainer}>
+          <h2>Email: </h2>
+          <input
+            type="text"
+            placeholder="LoginID"
+            value={loginID}
+            onChange={(e) => setLoginID(e.target.value)}
+            className={styles.loginInput}
+          />
+        </div>
+        <div className={styles.passwordContainer}>
+          <h2>Password: </h2>
+          <input
+            type="password"
+            placeholder="Password"
+            value={loginPassword}
+            onChange={(e) => setLoginPassword(e.target.value)}
+            className={styles.loginPassword}
+          />
+        </div>
+        <button onClick={handleLogin} className={styles.loginButton}>
+          Login Button
+        </button>
       </section>
     </>
   );
