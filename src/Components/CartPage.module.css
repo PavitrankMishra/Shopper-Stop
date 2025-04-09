@@ -65,6 +65,7 @@
   background-color: transparent;
   border: none;
   font-size: 24px;
+  cursor: pointer;
 }
 
 .removeBtn {
@@ -74,6 +75,7 @@
   border-radius: 4px;
   padding: 6px 10px;
   font-family: "Nunito", sans-serif;
+  cursor: pointer;
 }
 
 .summary {
@@ -133,9 +135,8 @@
   text-decoration: underline;
 }
 
-@media (max-width:420px) {
+@media (max-width: 420px) {
   .cartList img {
-    width:100px;
+    width: 100px;
   }
-  
 }
