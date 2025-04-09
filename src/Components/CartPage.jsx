@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import styles from "./CartPage.module.css";
 import { Link } from "react-router-dom";
+import Header from "./Header";
 
 const CartPage = ({ cartItems, setCartItems }) => {
   const [showPopup, setShowPopup] = useState(false);
+
   const getTotalPrice = () => {
     return cartItems.reduce(
       (acc, item) => acc + item.price * (item.quantity || 1),
@@ -27,31 +29,35 @@ const CartPage = ({ cartItems, setCartItems }) => {
     setCartItems(updatedCart);
   };
 
-  const handleCheckout = () => {
-    // setCartItems([]);
-    setShowPopup(true);
+  const removeItem = (id) => {
+    const updatedCart = cartItems.filter((item) => item.id !== id);
+    setCartItems(updatedCart);
+  };
 
+  const handleCheckout = () => {
+    setShowPopup(true);
     setTimeout(() => {
       setShowPopup(false);
     }, 4000);
   };
 
   return (
-    <div className={styles.cartPageContainer}>
-      <h2>Your Cart</h2>
+    <>
+      <Header cartItems={cartItems} />
+      <div className={styles.cartPageContainer}>
+        <h2>Your Cart</h2>
 
-      {cartItems.length === 0 ? (
-        <p>Your cart is empty.</p>
-      ) : (
-        <>
-          <ul className={styles.cartList}>
-            {cartItems.map((item) => (
-              <li key={item.id}>
-                <img src={item.image} alt={item.title} />
-                <div>
-                  <h4>{item.title}</h4>
-                  <p>Price: ${item.price}</p>
-                  <div className={styles.controls}>
+        {cartItems.length === 0 ? (
+          <p>Your cart is empty.</p>
+        ) : (
+          <>
+            <ul className={styles.cartList}>
+              {cartItems.map((item) => (
+                <li key={item.id}>
+                  <img src={item.image} alt={item.title} />
+                  <div>
+                    <h4>{item.title}</h4>
+                    <p>Price: ${item.price}</p>
                     <div className={styles.controls}>
                       <button onClick={() => decrementQuantity(item.id)}>
                         -
@@ -61,29 +67,35 @@ const CartPage = ({ cartItems, setCartItems }) => {
                         +
                       </button>
                     </div>
+                    <button
+                      className={styles.removeBtn}
+                      onClick={() => removeItem(item.id)}
+                    >
+                      Remove
+                    </button>
                   </div>
-                </div>
-              </li>
-            ))}
-          </ul>
+                </li>
+              ))}
+            </ul>
 
-          <div className={styles.summary}>
-            <h3>Total: ${getTotalPrice().toFixed(2)}</h3>
-            <button className={styles.checkoutBtn} onClick={handleCheckout}>
-              Checkout
-            </button>
-          </div>
-        </>
-      )}
+            <div className={styles.summary}>
+              <h3>Total: ${getTotalPrice().toFixed(2)}</h3>
+              <button className={styles.checkoutBtn} onClick={handleCheckout}>
+                Checkout
+              </button>
+            </div>
+          </>
+        )}
 
-      <Link to="/" className={styles.backLink}>
-        ← Back to Products
-      </Link>
+        <Link to="/" className={styles.backLink}>
+          ← Back to Products
+        </Link>
 
-      {showPopup && (
-        <div className={styles.popup}>🎉 Order placed successfully!</div>
-      )}
-    </div>
+        {showPopup && (
+          <div className={styles.popup}>🎉 Order placed successfully!</div>
+        )}
+      </div>
+    </>
   );
 };
 
