@@ -1,21 +1,30 @@
-import "./App.css";
+import React, { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Login from "./Components/Login";
 import ProductList from "./Components/ProductList";
 import ProductDetailPage from "./Components/ProductDetailPage";
 
-function App() {
+const App = () => {
+  const [cartItems, setCartItems] = useState([]);
+
   return (
-    <>
-      <Router>
-        <Routes>
-          <Route path="/" element={<Login />} />
-          <Route path="/products" element={<ProductList />} />
-          <Route path="/productdetail" element={<ProductDetailPage />} />
-        </Routes>
-      </Router>
-    </>
+    <Router>
+      <Routes>
+        <Route
+          path="/"
+          element={<ProductList cartItems={cartItems} />}
+        />
+        <Route
+          path="/productdetail/:id"
+          element={
+            <ProductDetailPage
+              cartItems={cartItems}
+              setCartItems={setCartItems}
+            />
+          }
+        />
+      </Routes>
+    </Router>
   );
-}
+};
 
 export default App;

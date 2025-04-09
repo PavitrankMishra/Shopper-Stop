@@ -2,8 +2,9 @@ import React, { useEffect, useState } from "react";
 import styles from "./ProductList.module.css";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import Header from "./Header";
 
-const ProductList = () => {
+const ProductList = ({ cartItems }) => {
   const [products, setProducts] = useState([]);
   const [inputProduct, setInputProduct] = useState("");
   const [updatedProducts, setUpdatedProducts] = useState([]);
@@ -35,40 +36,43 @@ const ProductList = () => {
   }, [inputProduct, products]);
 
   return (
-    <div className={styles.productContainer}>
-      <p className={styles.productHeading}>Products List</p>
-      <input
-        type="text"
-        placeholder="Enter the name of item"
-        name="product"
-        className={styles.productInput}
-        value={inputProduct}
-        onChange={(e) => setInputProduct(e.target.value)}
-      />
+    <>
+      <Header cartItems={cartItems} />
+      <div className={styles.productContainer}>
+        <p className={styles.productHeading}>Products List</p>
+        <input
+          type="text"
+          placeholder="Enter the name of item"
+          name="product"
+          className={styles.productInput}
+          value={inputProduct}
+          onChange={(e) => setInputProduct(e.target.value)}
+        />
 
-      <table className={styles.productTable}>
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Product</th>
-            <th>Price ($)</th>
-          </tr>
-        </thead>
-        <tbody>
-          {updatedProducts.map((product, index) => (
-            <tr
-              key={product.id}
-              onClick={() => navigate(`/productdetail/${product.id}`)}
-              style={{ cursor: "pointer" }}
-            >
-              <td>{index + 1}</td>
-              <td>{product.title}</td>
-              <td>${product.price}</td>
+        <table className={styles.productTable}>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Product</th>
+              <th>Price ($)</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
+          </thead>
+          <tbody>
+            {updatedProducts.map((product, index) => (
+              <tr
+                key={product.id}
+                onClick={() => navigate(`/productdetail/${product.id}`)}
+                style={{ cursor: "pointer" }}
+              >
+                <td>{index + 1}</td>
+                <td>{product.title}</td>
+                <td>${product.price}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </>
   );
 };
 
